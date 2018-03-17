@@ -14,7 +14,7 @@
 
 <div class="ui modal first">
   <div class="ui center aligned header">Tropical Storm Alert</div>
-  <div class="ui list">
+  <div class="ui center aligned list">
     <div class="ui checkbox item">
       <input type="checkbox" name="siren">
       <label>Warning Siren</label>
@@ -51,7 +51,7 @@
 
 <div class="ui modal third">
   <div class="ui center aligned header">Alert Sent</div>
-  <div class="ui button">Ok</div>
+  <div class="ui center aligned content">Click outside window to close.</div>
 </div>
 
 <script type="text/javascript">
@@ -66,6 +66,7 @@
   ;
   // confirm alerts modal
   $('.second.modal')
+      .modal('setting', 'closable', false)
       .modal('attach events', '.first .approve')
   ;
   // select alerts type modal
@@ -74,7 +75,7 @@
       $(".first").modal('show');
     });
     $(".first").modal({
-      closable:true
+      closable:false
     });
   });
 
