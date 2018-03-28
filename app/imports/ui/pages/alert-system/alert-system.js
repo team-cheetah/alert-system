@@ -11,20 +11,26 @@ Template.Pages_systemTest.helpers({
 });
 
 Template.Pages_systemTest.events({
-  'click button'() {
-    console.log("Button Clicked");
+  'click button': function() {
     $('.coupled.modal')
         .modal({
           allowMultiple: false
         })
     ;
-// attach events to buttons
+    //confirmation modal
+    $('.third.modal')
+        .modal('attach events', '.second .approve')
+    ;
+    //confirm alerts modal
     $('.second.modal')
-        .modal('attach events', '.first.modal .button')
+        .modal('setting', 'closable', false)
+        .modal('attach events', '.first .approve')
     ;
-// show first now
-    $('#firstModal')
+    //select alert types modal
+    $(".first")
         .modal('show')
-    ;
+        .modal({
+          closable:false
+        });
   }
 });
