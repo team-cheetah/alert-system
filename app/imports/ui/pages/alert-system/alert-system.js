@@ -2,15 +2,15 @@ import { Template } from 'meteor/templating';
 
 import './alert-system.html';
 
-Template.Pages_systemTest.onCreated(function() {
+Template.Pages_alertSystem.onCreated(function() {
 
 });
 
-Template.Pages_systemTest.helpers({
+Template.Pages_alertSystem.helpers({
 
 });
 
-Template.Pages_systemTest.events({
+Template.Pages_alertSystem-.events({
   'click button': function() {
     $('.coupled.modal')
         .modal({
