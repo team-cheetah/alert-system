@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './routes.js';
-import './imports/ui/stylesheets/style.css';
+import '/imports/ui/stylesheets/style.css';
 
 // Template.hello.onCreated(function helloOnCreated() {
 //   // counter starts at 0

@@ -1,70 +1,74 @@
 <template name="Pages_alertSystem">
-    <div class="ui container" style="background-color: #ff5555">
-        <div class="ui centered grid" style="margin: 20px">
-            <!--<div class="row"> -->
-                <div class="four wide column">
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">
-                                Earthquake Alert
-                            </div>
-                        </div>
-                        <div class="content">
-                            <img class="ui fluid medium centered image" alt="red earthquake" src="http://moziru.com/images/earthquake-clipart-house-16.png"/>
-                        </div>
-                        <div class="extra content">
-                            <button class="ui fluid button">SEND ALERT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">
-                                Tsunami Alert
-                            </div>
-                        </div>
-                        <div class="content">
-                            <img class="ui fluid medium centered image" alt="red tsunami" src="http://www.oogazone.com/wp-content/uploads/best-hd-tsunami-wave-and-red-sun-on-storm-sea-stock-vector-ocean-surf-drawing.jpg"/>
-                        </div>
-                        <div class="extra content">
-                            <button class="ui fluid button">SEND ALERT</button>
-                        </div>
-                    </div>
-               <!-- </div> -->
+  <div class="ui container">
+    <div class="ui centered grid" style="margin: 20px">
+      <!--<div class="row"> -->
+      <div class="four wide column">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Earthquake Alert
             </div>
-           <!-- <div class="row"> -->
-                <div class="four wide column">
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">
-                                Tropical Storm Alert
-                            </div>
-                        </div>
-                        <div class="content">
-                            <img class="ui fluid medium centered image" alt="red tropical storm" src="http://moziru.com/images/lamps-clipart-hariken-12.jpg"/>
-                        </div>
-                        <div class="extra content">
-                            <button class="ui fluid button">SEND ALERT</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">
-                                Ballistic Missile Alert
-                            </div>
-                        </div>
-                        <div class="content">
-                            <img class="ui fluid medium centered image" alt="red missile" src="https://media.forgecdn.net/avatars/89/688/636233190804088415.png"/>
-                        </div>
-                        <div class="extra content">
-                            <button class="ui fluid button">SEND ALERT</button>
-                        </div>
-                    </div>
-                </div>
-            <!--</div> -->
+          </div>
+          <div class="content">
+            <img class="ui fluid medium centered image" alt="red earthquake"
+                 src="http://moziru.com/images/earthquake-clipart-house-16.png"/>
+          </div>
+          <div class="extra content">
+            {{> Components_alertModal type="Earthquake Alert" id=1}}
+          </div>
         </div>
+      </div>
+      <div class="four wide column">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Tsunami Alert
+            </div>
+          </div>
+          <div class="content">
+            <img class="ui fluid medium centered image" alt="red tsunami"
+                 src="http://www.oogazone.com/wp-content/uploads/best-hd-tsunami-wave-and-red-sun-on-storm-sea-stock-vector-ocean-surf-drawing.jpg"/>
+          </div>
+          <div class="extra content">
+            {{> Components_alertModal type="Tsunami Alert" id=2}}
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+      <!-- <div class="row"> -->
+      <div class="four wide column">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Tropical Storm Alert
+            </div>
+          </div>
+          <div class="content">
+            <img class="ui fluid medium centered image" alt="red tropical storm"
+                 src="http://moziru.com/images/lamps-clipart-hariken-12.jpg"/>
+          </div>
+          <div class="extra content">
+            {{> Components_alertModal type="Tropical Storm Alert" id=3}}
+          </div>
+        </div>
+      </div>
+      <div class="four wide column">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Ballistic Missile Alert
+            </div>
+          </div>
+          <div class="content">
+            <img class="ui fluid medium centered image" alt="red missile"
+                 src="https://media.forgecdn.net/avatars/89/688/636233190804088415.png"/>
+          </div>
+          <div class="extra content">
+            {{> Components_alertModal type="Ballistic Missile Alert" id=4}}
+          </div>
+        </div>
+      </div>
+      <!--</div> -->
     </div>
+  </div>
 </template>
