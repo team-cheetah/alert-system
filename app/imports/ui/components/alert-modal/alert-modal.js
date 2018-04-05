@@ -6,6 +6,10 @@ Template.Components_alertModal.onCreated(function () {
 
 });
 
+Template.Components_alertModal.onDestroyed(function () {
+  $('.modal').remove();
+})
+
 Template.Components_alertModal.helpers({});
 
 Template.Components_alertModal.events({
@@ -17,12 +21,12 @@ Template.Components_alertModal.events({
     // ;
     //confirmation modal
     $(`.third.modal.${instance.data.id}`)
-        .modal('attach events', '.second .approve')
+        .modal('attach events', `.second.modal.${instance.data.id} .approve`)
     ;
     //confirm alerts modal
     $(`.second.modal.${instance.data.id}`)
         .modal('setting', 'closable', false)
-        .modal('attach events', '.first .approve')
+        .modal('attach events', `.first.modal.${instance.data.id} .approve`)
     ;
     //select alert types modal
     $(`.first.modal.${instance.data.id}`)
