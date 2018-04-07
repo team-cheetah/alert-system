@@ -66,6 +66,7 @@ routepolicy@1.0.13
 semantic:ui@2.2.6_5
 semantic:ui-data@2.2.6_4
 server-render@0.3.0
+session@1.1.7
 shell-server@0.3.1
 shim-common@0.1.0
 socket-stream-client@0.1.0

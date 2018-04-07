@@ -4,19 +4,19 @@
     <div class="ui center aligned header">{{type}}</div>
     <div class="ui center aligned list">
       <div class="ui checkbox item">
-        <input type="checkbox" name="siren">
+        <input type="checkbox" id="siren">
         <label>Warning Siren</label>
       </div>
       <div class="ui checkbox item">
-        <input type="checkbox" name="text">
+        <input type="checkbox" id="text">
         <label>Text Message</label>
       </div>
       <div class="ui checkbox item">
-        <input type="checkbox" name="radio">
+        <input type="checkbox" id="radio">
         <label>Radio Broadcast</label>
       </div>
       <div class="ui checkbox item">
-        <input type="checkbox" name="tv">
+        <input type="checkbox" id="tv">
         <label>Television Broadcast</label>
       </div>
     </div>
@@ -29,7 +29,18 @@
   <div class="ui modal {{id}} second">
     <div class="ui center aligned header">Send Alert?</div>
     <div class="content">
-      -insert alerts here-
+      {{#if sirenCheck}}
+      <h3>- Warning Siren</h3>
+      {{/if}}
+      {{#if textCheck}}
+      <p>- Text Message</p>
+      {{/if}}
+      {{#if radioCheck}}
+      <p>- Radio Broadcast</p>
+      {{/if}}
+      {{#if tvCheck}}
+      <p>- Television Broadcast</p>
+      {{/if}}
     </div>
     <div class="actions">
       <div class="ui approve button">Approve</div>

@@ -22,10 +22,3 @@ FlowRouter.route('/alert-system', {
     BlazeLayout.render('Layouts_body', {main: 'Pages_alertSystem'})}
 
 });
-
-FlowRouter.route('/layouts', {
-  name: 'Body_Page',
-  action() {
-    BlazeLayout.render('Layouts_body', {main: 'Layouts_body'})}
-
-});
