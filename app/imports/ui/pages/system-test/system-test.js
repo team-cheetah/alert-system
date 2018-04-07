@@ -11,5 +11,7 @@ Template.Pages_systemTest.helpers({
 });
 
 Template.Pages_systemTest.events({
+  'click button': function() {
 
+  }
 });
