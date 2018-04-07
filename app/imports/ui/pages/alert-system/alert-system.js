@@ -10,7 +10,7 @@ Template.Pages_alertSystem.helpers({
 
 });
 
-Template.Pages_alertSystem-.events({
+Template.Pages_alertSystem.events({
   'click button': function() {
     $('.coupled.modal')
         .modal({
