@@ -7,7 +7,7 @@ Template.Pages_systemTest.onCreated(function() {
 });
 
 Template.Pages_systemTest.helpers({
-
+  alertName: "Earthquake"
 });
 
 Template.Pages_systemTest.events({

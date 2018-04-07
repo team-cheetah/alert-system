@@ -2,23 +2,23 @@
   {{> Components_navigationMenu}}
   {{> Template.dynamic template=main}}
   <div class="ui modal first">
-    <div class="ui center aligned header">Tropical Storm Alert</div>
+    <div class="ui center aligned header" id="alertName">Earthquake Alert Test</div>
     <div class="ui center aligned list">
       <div class="ui checkbox item">
         <input type="checkbox" name="siren">
-        <label>Warning Siren</label>
+        <label>{{ check1 }}</label>
       </div>
       <div class="ui checkbox item">
         <input type="checkbox" name="text">
-        <label>Text Message</label>
+        <label>{{ check2 }}</label>
       </div>
       <div class="ui checkbox item">
         <input type="checkbox" name="radio">
-        <label>Radio Broadcast</label>
+        <label>{{ check3 }}</label>
       </div>
       <div class="ui checkbox item">
         <input type="checkbox" name="tv">
-        <label>Television Broadcast</label>
+        <label>{{ check4 }}</label>
       </div>
     </div>
     <div class="actions">
@@ -36,6 +36,11 @@
       <div class="ui approve button">Approve</div>
       <div class="ui cancel button">Cancel</div>
     </div>
+  </div>
+
+  <div class="ui modal password">
+    <div class="ui center aligned header">Input Password</div>
+    <div></div>
   </div>
 
   <div class="ui modal third">
