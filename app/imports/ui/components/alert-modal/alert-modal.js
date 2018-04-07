@@ -3,10 +3,10 @@ import { Session } from 'meteor/session';
 
 import './alert-modal.html';
 
-sirenAlert = false;
-textAlert = false;
-radioAlert = false;
-tvAlert = false;
+let sirenAlert = false;
+let textAlert = false;
+let radioAlert = false;
+let tvAlert = false;
 
 Template.Components_alertModal.onCreated(function () {
 
@@ -18,7 +18,7 @@ Template.Components_alertModal.onDestroyed(function () {
 
 Template.Components_alertModal.helpers({
   'sirenCheck': function() {
-    return sirenAlert;
+    return true;
   },
   'textCheck': function() {
     return textAlert;
@@ -54,13 +54,8 @@ Template.Components_alertModal.events({
           closable: false
         });
   },
-  'click #siren': function() {
-    if (document.getElementById('siren').checked) {
-      sirenAlert = true;
-      console.log("siren is checked");
-    }
-    else
-      sirenAlert = false;
+  'change #siren': function() {
+    console.log("something is checked or unchecked");
   },
   'change #text': function() {
     if (document.getElementById('text').checked)

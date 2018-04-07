@@ -30,16 +30,16 @@
     <div class="ui center aligned header">Send Alert?</div>
     <div class="content">
       {{#if sirenCheck}}
-      <h3>- Warning Siren</h3>
+      <h3> - Warning Siren</h3>
       {{/if}}
       {{#if textCheck}}
-      <p>- Text Message</p>
+      <p> - Text Message</p>
       {{/if}}
       {{#if radioCheck}}
-      <p>- Radio Broadcast</p>
+      <p> - Radio Broadcast</p>
       {{/if}}
       {{#if tvCheck}}
-      <p>- Television Broadcast</p>
+      <p> - Television Broadcast</p>
       {{/if}}
     </div>
     <div class="actions">
@@ -50,6 +50,8 @@
 
   <div class="ui modal {{id}} third">
     <div class="ui center aligned header">Alert Sent</div>
-    <div class="ui center aligned content">Click outside window to close.</div>
+    <div class="actions">
+      <div class="ui approve button">Ok</div>
+    </div>
   </div>
 </template>
