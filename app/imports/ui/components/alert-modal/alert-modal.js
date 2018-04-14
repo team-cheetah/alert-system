@@ -18,7 +18,7 @@ Template.Components_alertModal.onDestroyed(function () {
 
 Template.Components_alertModal.helpers({
   'sirenCheck': function() {
-    return true;
+    return sirenAlert;
   },
   'textCheck': function() {
     return textAlert;
@@ -27,7 +27,7 @@ Template.Components_alertModal.helpers({
     return radioAlert;
   },
   'tvCheck': function() {
-    return tvAlert;
+    return true;
   },
 });
 
@@ -50,26 +50,31 @@ Template.Components_alertModal.events({
     //select alert types modal
     $(`.first.modal.${instance.data.id}`)
         .modal('show')
-        .modal({
-          closable: false
-        });
+        .modal({ closable: false });
   },
-  'change #siren': function() {
-    console.log("something is checked or unchecked");
+  'change #siren'() {
+    console.log("clicked siren");
+    if (document.getElementById('siren').checked)
+      textAlert = true;
+    else
+      textAlert = false;
   },
-  'change #text': function() {
-    if (document.getElementById('text').checked)
+  'change #textMsg'() {
+    console.log("clicked text");
+    if (document.getElementById('textMsg').checked)
       textAlert = true;
     else
       textAlert = false;
   },
   'change #radio': function() {
+    console.log("clicked radio");
     if (document.getElementById('radio').checked)
       radioAlert = true;
     else
       radioAlert = false;
   },
   'change #tv': function() {
+    console.log("clicked tv");
     if (document.getElementById('tv').checked)
       tvAlert = true;
     else
