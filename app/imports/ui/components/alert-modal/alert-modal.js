@@ -40,36 +40,41 @@ Template.Components_alertModal.events({
     // ;
     //confirmation modal
     $(`.third.modal.${instance.data.id}`)
+        .modal({detachable: false})
         .modal('attach events', `.second.modal.${instance.data.id} .approve`)
     ;
     //confirm alerts modal
     $(`.second.modal.${instance.data.id}`)
-        .modal('setting', 'closable', false)
+        .modal({
+          detachable: false,
+          closable: false,
+        })
         .modal('attach events', `.first.modal.${instance.data.id} .approve`)
     ;
     //select alert types modal
     $(`.first.modal.${instance.data.id}`)
-        .modal('show')
         .modal({
+          detachable: false,
           closable: false
-        });
+        })
+        .modal('show');
   },
-  'change #siren': function() {
+  'change #siren'(e, t) {
     console.log("something is checked or unchecked");
   },
-  'change #text': function() {
+  'change #text'(e, t) {
     if (document.getElementById('text').checked)
       textAlert = true;
     else
       textAlert = false;
   },
-  'change #radio': function() {
+  'change #radio'(e, t) {
     if (document.getElementById('radio').checked)
       radioAlert = true;
     else
       radioAlert = false;
   },
-  'change #tv': function() {
+  'change #tv'(e, t) {
     if (document.getElementById('tv').checked)
       tvAlert = true;
     else
