@@ -1,0 +1,42 @@
+<template name="Pages_landing">
+
+    <div class="ui container">
+
+        <div class="ui two cards" style="margin-top: 20px">
+            <div class="card" style="background-color: #ff5555">
+                <div class="content">
+                    <div class="header">Alert System</div>
+                    <div class="meta">REAL</div>
+                    <div class="description" style="font-size: 20px">
+                        Issue warnings and alerts to the State of Hawaii during a live emergency.
+                    </div>
+                </div>
+                {{#if currentUser}}
+                <div class="extra content">
+                    <a href="/alert-system" class="ui fluid inverted button">Send Alert</a>
+                </div>
+                {{/if}}
+            </div>
+            <div class="card" style="background-color: #4444ff">
+                <div class="content">
+                    <div class="header">System Test</div>
+                    <div class="meta">DRILL</div>
+                    <div class="description" style="font-size: 20px">
+                        Run tests on the alert system for the State of Hawaii
+                    </div>
+                </div>
+                {{#if currentUser}}
+                <div class="extra content">
+                    <a href="/" class="ui fluid inverted button">Run Test</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="ui center aligned container" style="margin:15px">
+            <div class="ui fluid yellow button">
+                {{> loginButtons}}
+            </div>
+        </div>
+    </div>
+
+</template>
