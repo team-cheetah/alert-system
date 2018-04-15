@@ -10,15 +10,15 @@ import '/imports/ui/pages/alert-system/alert-system.js'
 import '/imports/ui/pages/landing/landing.js'
 
 // Set up all routes in the app
-FlowRouter.route('/landing', {
-  name: 'Landing_Page',
+FlowRouter.route('/', {
+  name: 'App.main',
   action() {
     BlazeLayout.render('Layouts_body', { main: 'Pages_landing' });
   },
 });
 
-FlowRouter.route('/', {
-  name: 'App.main',
+FlowRouter.route('/system-test', {
+  name: 'System_Test',
   action() {
     BlazeLayout.render('Layouts_body', { main: 'Pages_systemTest' });
   },
