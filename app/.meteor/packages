@@ -25,3 +25,5 @@ less@2.7.11
 juliancwirko:postcss
 dynamic-import
 session
+accounts-ui
+accounts-password
