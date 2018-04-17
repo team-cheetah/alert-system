@@ -3,10 +3,10 @@ import { Session } from 'meteor/session';
 
 import './alert-modal.html';
 
-let sirenAlert = false;
-let textAlert = false;
-let radioAlert = false;
-let tvAlert = false;
+Session.setDefault('sirenAlert', false);
+Session.setDefault('textAlert', false);
+Session.setDefault('radioAlert', false);
+Session.setDefault('tvAlert', false);
 
 Template.Components_alertModal.onCreated(function () {
 
@@ -18,16 +18,16 @@ Template.Components_alertModal.onDestroyed(function () {
 
 Template.Components_alertModal.helpers({
   'sirenCheck': function() {
-    return true;
+    return Session.get('sirenAlert');
   },
   'textCheck': function() {
-    return textAlert;
+    return Session.get('textAlert');
   },
   'radioCheck': function() {
-    return radioAlert;
+    return Session.get('radioAlert');
   },
   'tvCheck': function() {
-    return tvAlert;
+    return Session.get('tvAlert');
   },
 });
 
@@ -60,24 +60,27 @@ Template.Components_alertModal.events({
         .modal('show');
   },
   'change #siren'(e, t) {
-    console.log("something is checked or unchecked");
-  },
-  'change #text'(e, t) {
-    if (document.getElementById('text').checked)
-      textAlert = true;
+    if ($('#siren').is(':checked'))
+      Session.set('sirenAlert', true);
     else
-      textAlert = false;
+      Session.set('sirenAlert', false);
+  },
+  'change #textMsg'(e, t) {
+    if ($('#textMsg').is(':checked'))
+      Session.set('textAlert', true);
+    else
+      Session.set('textAlert', false);
   },
   'change #radio'(e, t) {
     if (document.getElementById('radio').checked)
-      radioAlert = true;
+      Session.set('radioAlert', true);
     else
-      radioAlert = false;
+      Session.set('radioAlert', false);
   },
   'change #tv'(e, t) {
     if (document.getElementById('tv').checked)
-      tvAlert = true;
+      Session.set('tvAlert', true);
     else
-      tvAlert = false;
+      Session.set('tvAlert', false);
   },
 });
