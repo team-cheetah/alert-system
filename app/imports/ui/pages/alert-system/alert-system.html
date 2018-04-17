@@ -14,7 +14,9 @@
                  src="http://moziru.com/images/earthquake-clipart-house-16.png"/>
           </div>
           <div class="extra content">
-            {{> Components_alertModal type="Earthquake Alert" id=1}}
+            {{#if currentUser}}
+              {{> Components_alertModal type="Earthquake Alert" id=1}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -30,7 +32,9 @@
                  src="http://www.oogazone.com/wp-content/uploads/best-hd-tsunami-wave-and-red-sun-on-storm-sea-stock-vector-ocean-surf-drawing.jpg"/>
           </div>
           <div class="extra content">
-            {{> Components_alertModal type="Tsunami Alert" id=2}}
+            {{#if currentUser}}
+              {{> Components_alertModal type="Tsunami Alert" id=2}}
+            {{/if}}
           </div>
         </div>
         </div>
@@ -48,7 +52,9 @@
                  src="http://moziru.com/images/lamps-clipart-hariken-12.jpg"/>
           </div>
           <div class="extra content">
-            {{> Components_alertModal type="Tropical Storm Alert" id=3}}
+            {{#if currentUser}}
+              {{> Components_alertModal type="Tropical Storm Alert" id=3}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -64,7 +70,9 @@
                  src="https://media.forgecdn.net/avatars/89/688/636233190804088415.png"/>
           </div>
           <div class="extra content">
-            {{> Components_alertModal type="Ballistic Missile Alert" id=4}}
+            {{#if currentUser}}
+              {{> Components_alertModal type="Ballistic Missile Alert" id=4}}
+            {{/if}}
           </div>
         </div>
       </div>
