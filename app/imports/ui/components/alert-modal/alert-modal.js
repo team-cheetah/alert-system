@@ -9,6 +9,7 @@ Session.setDefault('sirenAlert', false);
 Session.setDefault('textAlert', false);
 Session.setDefault('radioAlert', false);
 Session.setDefault('tvAlert', false);
+Session.setDefault('pass', false);
 
 Template.Components_alertModal.onCreated(function () {
 
@@ -31,6 +32,9 @@ Template.Components_alertModal.helpers({
   'tvCheck': function() {
     return Session.get('tvAlert');
   },
+  'passCheck': function() {
+    return Session.get('pass');
+  },
 });
 
 Template.Components_alertModal.events({
@@ -44,8 +48,29 @@ Template.Components_alertModal.events({
     //     })
     // ;
     //confirmation modal
+    /*
     $(`.third.modal.${instance.data.id}`)
         .modal({detachable: false})
+        .modal('attach events', `.second.modal.${instance.data.id} .approve`)
+    ;*/
+    //password modal
+    $(`.third.modal.${instance.data.id}`)
+        .modal({
+          detachable: false,
+          closable: false,
+          onDeny : function() {
+            return true;
+          },
+          onApprove: function() {
+            if ($("input:password").val() === "admin") {
+              Session.set('pass', false);
+              return true;
+            } else {
+              Session.set('pass', true);
+              return false;
+            }
+          }
+        })
         .modal('attach events', `.second.modal.${instance.data.id} .approve`)
     ;
     //confirm alerts modal
