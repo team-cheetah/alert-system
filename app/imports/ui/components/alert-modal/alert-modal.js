@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
+import '../../../api/alerts/methods.js';
+
 import './alert-modal.html';
 
 Session.setDefault('sirenAlert', false);
@@ -37,6 +39,9 @@ Template.Components_alertModal.helpers({
 
 Template.Components_alertModal.events({
   'click button'(event, instance) {
+    Meteor.call('alerts.sendSms', (res) => {
+      console.log(res)
+    });
     // $('.coupled.modal')
     //     .modal({
     //       allowMultiple: false

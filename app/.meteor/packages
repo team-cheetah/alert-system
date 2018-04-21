@@ -27,3 +27,4 @@ dynamic-import
 session
 accounts-ui
 accounts-password
+mrt:twilio-meteor

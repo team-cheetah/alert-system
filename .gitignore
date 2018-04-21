@@ -2,3 +2,4 @@ node_modules/
 .idea/
 app/.idea/
 .idea/workspace.xml
+app/settings.json
