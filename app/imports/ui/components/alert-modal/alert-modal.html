@@ -49,9 +49,22 @@
   </div>
 
   <div class="ui modal {{id}} third">
-    <div class="ui center aligned header">Alert Sent</div>
+    <div class="ui center aligned header">Password</div>
+    <div class="content">
+      {{#if passCheck}}
+      Incorrect Password
+      {{/if}}
+      <div class="ui form">
+        <div class="ui input">
+          <input type="password">
+        </div>
+      </div>
+    </div>
     <div class="actions">
       <div class="ui approve button">Ok</div>
+      <div class="ui cancel button">Cancel</div>
     </div>
   </div>
+
+
 </template>
