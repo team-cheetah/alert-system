@@ -47,7 +47,7 @@
       <div class="ui cancel button">Cancel</div>
     </div>
   </div>
-
+  {{#if pathCheck}}
   <div class="ui modal {{id}} third">
     <div class="ui center aligned header">Password</div>
     <div class="content">
@@ -65,6 +65,21 @@
       <div class="ui cancel button">Cancel</div>
     </div>
   </div>
+
+  <div class="ui modal {{id}} fourth">
+    <div class="ui center aligned header">Alert Sent!</div>
+    <div class="actions">
+      <div class="ui approve button">Ok</div>
+    </div>
+  </div>
+  {{else}}
+  <div class="ui modal {{id}} fifth">
+    <div class="ui center aligned header">Alert Sent!</div>
+    <div class="actions">
+      <div class="ui approve button">Ok</div>
+    </div>
+  </div>
+  {{/if}}
 
 
 </template>

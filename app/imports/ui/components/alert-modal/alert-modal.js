@@ -10,6 +10,7 @@ Session.setDefault('textAlert', false);
 Session.setDefault('radioAlert', false);
 Session.setDefault('tvAlert', false);
 Session.setDefault('pass', false);
+Session.setDefault('path', false);
 
 Template.Components_alertModal.onCreated(function () {
 
@@ -35,12 +36,15 @@ Template.Components_alertModal.helpers({
   'passCheck': function() {
     return Session.get('pass');
   },
+  'pathCheck': function() {
+    return Session.get('path');
+  }
 });
 
 Template.Components_alertModal.events({
   'click button'(event, instance) {
     Meteor.call('alerts.sendSms', (res) => {
-      console.log(res)
+      //console.log(res)
     });
     // $('.coupled.modal')
     //     .modal({
@@ -53,6 +57,26 @@ Template.Components_alertModal.events({
         .modal({detachable: false})
         .modal('attach events', `.second.modal.${instance.data.id} .approve`)
     ;*/
+    $(`.fifth.modal.${instance.data.id}`)
+        .modal({
+          detachable: false,
+          closable: false,
+          onApprove: function() {
+            return true;
+          }
+        })
+        .modal('attach events', `.second.modal.${instance.data.id} .approve`)
+    ;
+    $(`.fourth.modal.${instance.data.id}`)
+        .modal({
+          detachable: false,
+          closable: false,
+          onApprove: function() {
+            return true;
+          }
+        })
+        .modal('attach events', `.third.modal.${instance.data.id} .approve`)
+    ;
     //password modal
     $(`.third.modal.${instance.data.id}`)
         .modal({
@@ -61,7 +85,7 @@ Template.Components_alertModal.events({
           onDeny : function() {
             return true;
           },
-          onApprove: function() {
+          onApprove: function () {
             if ($("input:password").val() === "admin") {
               Session.set('pass', false);
               return true;
@@ -78,6 +102,7 @@ Template.Components_alertModal.events({
         .modal({
           detachable: false,
           closable: false,
+
         })
         .modal('attach events', `.first.modal.${instance.data.id} .approve`)
     ;
@@ -85,11 +110,20 @@ Template.Components_alertModal.events({
     $(`.first.modal.${instance.data.id}`)
         .modal({
           detachable: false,
-          closable: false
+          closable: false,
+          onApprove: function() {
+            if (window.location.pathname.match("/alert-system")) {
+              Session.set('path', true);
+            } else {
+              Session.set('path', false);
+            }
+            console.log(Session.get('path'));
+          }
         })
         .modal('show');
   },
   'change #siren'(e, t) {
+    console.log(window.location.pathname);
     if ($('#siren').is(':checked'))
       Session.set('sirenAlert', true);
     else
@@ -102,13 +136,13 @@ Template.Components_alertModal.events({
       Session.set('textAlert', false);
   },
   'change #radio'(e, t) {
-    if (document.getElementById('radio').checked)
+    if ($('#radio').is(':checked'))
       Session.set('radioAlert', true);
     else
       Session.set('radioAlert', false);
   },
   'change #tv'(e, t) {
-    if (document.getElementById('tv').checked)
+    if ($('#tv').is(':checked'))
       Session.set('tvAlert', true);
     else
       Session.set('tvAlert', false);
