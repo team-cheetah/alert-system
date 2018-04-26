@@ -28,3 +28,4 @@ session
 accounts-ui
 accounts-password
 mrt:twilio-meteor
+email
