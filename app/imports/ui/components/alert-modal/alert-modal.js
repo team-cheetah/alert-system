@@ -11,6 +11,13 @@ Session.setDefault('radioAlert', false);
 Session.setDefault('tvAlert', false);
 Session.setDefault('pass', false);
 
+function clearChecks() {
+  Session.set('sirenAlert', false)
+  Session.set('textAlert', false)
+  Session.set('radioAlert', false)
+  Session.set('tvAlert', false)
+}
+
 Template.Components_alertModal.onCreated(function () {
 
 });
@@ -42,42 +49,55 @@ Template.Components_alertModal.events({
     Meteor.call('alerts.sendSms', (res) => {
       console.log(res)
     });
-    // $('.coupled.modal')
-    //     .modal({
-    //       allowMultiple: false
-    //     })
-    // ;
-    //confirmation modal
-    /*
-    $(`.third.modal.${instance.data.id}`)
-        .modal({detachable: false})
-        .modal('attach events', `.second.modal.${instance.data.id} .approve`)
-    ;*/
-    //password modal
+
     $(`.third.modal.${instance.data.id}`)
         .modal({
           detachable: false,
           closable: false,
+          observeChanges: true,
+          duration: 0,
           onDeny : function() {
+            clearChecks()
+            $('.first.modal input').removeAttr('checked')            
             return true;
           },
           onApprove: function() {
-            if ($("input:password").val() === "admin") {
+            let password = $(`.third.modal.${instance.data.id} input:password`).val();
+            if (password == "admin") {
+              console.log('correct password...', 'password:', password)
               Session.set('pass', false);
+              clearChecks()
+              $('.first.modal input').removeAttr('checked')     
+              $(".third.modal input:password").val('')      
               return true;
             } else {
+              console.log('nope! incorrect password...', 'password:', password)
+
               Session.set('pass', true);
+              $(".third.modal input:password").val('')      
               return false;
             }
           }
         })
-        .modal('attach events', `.second.modal.${instance.data.id} .approve`)
+        // .modal('attach events', `.second.modal.${instance.data.id} .approve`)
     ;
     //confirm alerts modal
     $(`.second.modal.${instance.data.id}`)
         .modal({
           detachable: false,
           closable: false,
+          observeChanges: true,
+          duration: 0,
+          onDeny: function() {
+            clearChecks()
+            $('.first.modal input').removeAttr('checked')
+          },
+          onApprove: function() {
+            if (Session.get('currentPage') === 'alertSystem') {
+              console.log('alertSystem!')
+              $(`.third.modal.${instance.data.id}`).modal('show')
+            }
+          }
         })
         .modal('attach events', `.first.modal.${instance.data.id} .approve`)
     ;
@@ -85,30 +105,36 @@ Template.Components_alertModal.events({
     $(`.first.modal.${instance.data.id}`)
         .modal({
           detachable: false,
-          closable: false
+          closable: false,
+          observeChanges: true,
+          duration: 0,
+          onDeny: function() {
+            clearChecks()
+            $('.first.modal input').removeAttr('checked')
+          }
         })
         .modal('show');
   },
-  'change #siren'(e, t) {
-    if ($('#siren').is(':checked'))
+  'change .siren'(e, t) {
+    if ($('.siren').is(':checked'))
       Session.set('sirenAlert', true);
     else
       Session.set('sirenAlert', false);
   },
-  'change #textMsg'(e, t) {
-    if ($('#textMsg').is(':checked'))
+  'change .textMsg'(e, t) {
+    if ($('.textMsg').is(':checked'))
       Session.set('textAlert', true);
     else
       Session.set('textAlert', false);
   },
-  'change #radio'(e, t) {
-    if (document.getElementById('radio').checked)
+  'change .radio'(e, t) {
+    if ($('.radio').is(':checked'))
       Session.set('radioAlert', true);
     else
       Session.set('radioAlert', false);
   },
-  'change #tv'(e, t) {
-    if (document.getElementById('tv').checked)
+  'change .tv'(e, t) {
+    if ($('.tv').is(':checked'))
       Session.set('tvAlert', true);
     else
       Session.set('tvAlert', false);
