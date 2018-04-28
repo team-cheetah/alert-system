@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
+import { Logs } from '/imports/api/logs/logs.js';
 
 import '../../../api/alerts/methods.js';
 
@@ -7,19 +8,22 @@ import './alert-modal.html';
 
 Session.setDefault('sirenAlert', false);
 Session.setDefault('textAlert', false);
-Session.setDefault('radioAlert', false);
+Session.setDefault('emailAlert', false);
 Session.setDefault('tvAlert', false);
 Session.setDefault('pass', false);
 
 function clearChecks() {
   Session.set('sirenAlert', false)
   Session.set('textAlert', false)
-  Session.set('radioAlert', false)
+  Session.set('emailAlert', false)
   Session.set('tvAlert', false)
 }
 
 Template.Components_alertModal.onCreated(function () {
-
+  console.log('onCreated')
+  Tracker.autorun(function() {
+    Meteor.subscribe('logs.all')
+  })
 });
 
 Template.Components_alertModal.onDestroyed(function () {
@@ -33,8 +37,8 @@ Template.Components_alertModal.helpers({
   'textCheck': function() {
     return Session.get('textAlert');
   },
-  'radioCheck': function() {
-    return Session.get('radioAlert');
+  'emailCheck': function() {
+    return Session.get('emailAlert');
   },
   'tvCheck': function() {
     return Session.get('tvAlert');
@@ -46,9 +50,6 @@ Template.Components_alertModal.helpers({
 
 Template.Components_alertModal.events({
   'click button'(event, instance) {
-    Meteor.call('alerts.sendSms', (res) => {
-      console.log(res)
-    });
 
     $(`.third.modal.${instance.data.id}`)
         .modal({
@@ -66,9 +67,21 @@ Template.Components_alertModal.events({
             if (password == "admin") {
               console.log('correct password...', 'password:', password)
               Session.set('pass', false);
+
+              if (Session.get('emailAlert')) {
+                Meteor.call('alerts.sendEmail', ' ', `EMERGENCY: ${instance.data.type} THIS IS NOT A TEST. PLEASE EVACUATE TO A SAFE AREA.`)
+              }
+
+              if (Session.get('textAlert')) {
+                Meteor.call('alerts.sendSms', ' ', `EMERGENCY: ${instance.data.type} THIS IS NOT A TEST. PLEASE EVACUATE TO A SAFE AREA.`)
+              }
+
+
               clearChecks()
               $('.first.modal input').removeAttr('checked')     
-              $(".third.modal input:password").val('')      
+              $(".third.modal input:password").val('')  
+              Meteor.call('logs.insert', Meteor.user().username, 'Real Alert')    
+              
               return true;
             } else {
               console.log('nope! incorrect password...', 'password:', password)
@@ -96,6 +109,18 @@ Template.Components_alertModal.events({
             if (Session.get('currentPage') === 'alertSystem') {
               console.log('alertSystem!')
               $(`.third.modal.${instance.data.id}`).modal('show')
+            } else {
+              if (Session.get('emailAlert')) {
+                Meteor.call('alerts.sendEmail', ' ', `This is just a test for: ${instance.data.type}.`)
+              }
+
+              if (Session.get('textAlert')) {
+                Meteor.call('alerts.sendSms', ' ', `This is just a test for: ${instance.data.type}.`)
+              }
+
+              Meteor.call('logs.insert', Meteor.user().username, 'Test Alert')
+
+              clearChecks();
             }
           }
         })
@@ -127,11 +152,11 @@ Template.Components_alertModal.events({
     else
       Session.set('textAlert', false);
   },
-  'change .radio'(e, t) {
-    if ($('.radio').is(':checked'))
-      Session.set('radioAlert', true);
+  'change .email'(e, t) {
+    if ($('.email').is(':checked'))
+      Session.set('emailAlert', true);
     else
-      Session.set('radioAlert', false);
+      Session.set('emailAlert', false);
   },
   'change .tv'(e, t) {
     if ($('.tv').is(':checked'))
